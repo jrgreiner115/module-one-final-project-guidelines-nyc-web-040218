@@ -6,7 +6,7 @@ class CreateFightersTable < ActiveRecord::Migration
       t.string :weight_class
       t.integer :wins
       t.integer :losses
-      t.integer :id => false
+      t.integer :json_id => false
       t.integer :statid
       t.integer :draws
       t.string :fighter_status

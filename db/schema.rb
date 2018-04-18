@@ -10,20 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 1) do
+ActiveRecord::Schema.define(version: 5) do
 
   create_table "fighters", force: :cascade do |t|
-    t.string  "first_name"
-    t.string  "last_name"
-    t.string  "weight_class"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "weight_class"
     t.integer "wins"
     t.integer "losses"
     t.integer "statid"
     t.integer "draws"
-    t.string  "fighter_status"
+    t.string "fighter_status"
     t.boolean "title_holder"
-    t.text    "thumbnail"
-    t.text    "belt_thumbnail"
+    t.text "thumbnail"
+    t.text "belt_thumbnail"
+    t.integer "rating"
+  end
+
+  create_table "fights", force: :cascade do |t|
+    t.integer "fighter_id"
+    t.integer "user_id"
+    t.integer "fighter_rating"
+    t.integer "user_rating"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.integer "weight"
+    t.integer "wins"
+    t.integer "losses"
+    t.boolean "have_fought_before?"
+    t.integer "rating"
   end
 
 end
