@@ -1,20 +1,85 @@
 require 'pry'
 require_relative '../config/environment'
 
+Fighter.where(wins: nil).delete_all
+Fighter.all_add
+
+def get_fighter_name
+  fighter_name = gets.chomp
+  if fighter_name.downcase == "back"
+    main_menu
+  else
+  Fighter.search_by_name(fighter_name)
+  end
+end
+
+
+def find_interesting_things
+  puts "Hellooooooooooooo Lets find interesting things!"
+end
+
+def search_by_name_menu
+  puts "Type the Fighter's name in! Make sure to check spelling. Type 'back' if you'd like to go back to the Main Menu."
+  get_fighter_name
+end
+
+  def preferences
+      puts "PREFERENCES
+      1. Update Character
+      2. Delete Character
+      3. Back to Main Menu"
+      input = gets.chomp
+      if input == "1"
+        puts "Cool, just re-enter your info."
+        UserController.get_user_info
+        main_menu
+      elsif
+        input == "2"
+        "Your character is goneeeeeee."
+        User.last.delete
+        UserController.get_user_info
+        main_menu
+      elsif
+        input == "3"
+        main_menu
+      else
+        puts "Oops! You put in an incorrect input. Try again, or quit by typing 'exit!'"
+        preferences
+      end
+  end
+
+
 def main_menu
-  if gets.chomp == 1
-    self.find_interesting_things
-  elsif gets.chomp == 2
-    Fighter.search_by_name
-  elsif gets.chomp == 3
-    Fighter.random_fighter
+  puts "Main Menu:
+
+
+  Enter a number for an option. Or, type 'quit' to quit Fight Night.
+
+  1. Find Interesting Things About Fighters
+  2. Search For Fighter By Name
+  3. Fight Random Fighter
+  4. Preferences"
+
+  input = gets.chomp
+  if input == "1"
+    find_interesting_things
+  elsif input == "2"
+    search_by_name_menu
+  elsif input == "3"
+    Fighter.pick_random_fighter
+  elsif input == "4"
+      preferences
+  elsif input.downcase == "quit"
+     exit
   else puts "Oops! You put in an incorrect input. Try again, or quit by typing 'exit!'"
+    main_menu
   end
 end
 
 
 
-# require_relative "./seeds.rb"
+
+
 puts <<-EOF
 
 .d888d8b        888     888
@@ -40,37 +105,8 @@ Good luck.
 ᕙ(° ͜ಠ ͜ʖ ͜ಠ°)ᓄ
 
 "
-UsersController.get_user_info
-puts "Thanks! Here We Go."
-puts "Main Menu:
+UserController.get_user_info
+puts "Thanks! Here We Go. \n"
 
-
-Type the number for an option.
-
-1. Find Interesting Things About Fighters \n
-2. Search For Fighter By Name \n
-3. Fight Random Fighter"
 
 main_menu
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-false

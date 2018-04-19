@@ -1,9 +1,9 @@
-class UsersController
+class UserController
 
   def self.get_user_info
     # if self.wins = nil || self.losses = nil
     puts "What is your name?"
-    name= gets.chomp
+    name =  gets.chomp
     puts "What is your weight? (sry)"
     weight = gets.chomp
     puts "Have you ever fought before? (answer: Y/N)"
@@ -18,6 +18,6 @@ end
     fighter.save
   end
 
-  
+
 
 end
