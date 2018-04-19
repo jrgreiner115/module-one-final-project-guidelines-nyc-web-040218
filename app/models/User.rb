@@ -60,6 +60,60 @@ class User < ActiveRecord::Base
     }
  end
 
+ def user_rating_update
+
+   self.rating = 0
+
+
+
+
+   if self.wins == 0 || self.wins == nil
+       self.wins = 1
+   end
+
+   if self.losses == 0 || self.losses == nil
+       self.losses = 1
+   end
+
+     self.rating += (self.wins / self.losses)
+
+   if self.have_fought_before? == true
+     self.rating += 15
+   else
+     self.rating
+   end
+
+   if self.weight == 0
+     self.rating = 6
+   elsif self.weight == nil
+     self.rating = 6
+   elsif self.weight <= 110
+     self.rating += 7
+   elsif self.weight <= 125 && self.weight > 110
+     self.rating += 8
+   elsif self.weight <= 140 && self.weight > 125
+     self.rating += 9
+   elsif self.weight <= 155 && self.weight > 140
+     self.rating += 10
+   elsif self.weight <= 170 && self.weight > 155
+     self.rating += 12
+   elsif self.weight <= 185 && self.weight > 170
+     self.rating += 13
+   elsif self.weight <= 200 && self.weight > 185
+     self.rating += 14
+   elsif self.weight <= 215 && self.weight > 200
+     self.rating += 15
+   else self.weight > 215
+     self.rating += 16
+   end
+
+
+      var = rand(10..25)
+      self.rating += var
+      self.save
+
+ end
+
 
 
 

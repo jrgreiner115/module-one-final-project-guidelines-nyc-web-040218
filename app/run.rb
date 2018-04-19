@@ -14,9 +14,41 @@ def get_fighter_name
 end
 
 
-def find_interesting_things
-  puts "Hellooooooooooooo Lets find interesting things!"
-end
+def find_interesting_things_about_fighters
+ puts "Let's browse the UFC roster for some interesting stuff. 
+
+   Enter a number for an option. Or, 'back' to return to the Main Menu.
+
+ 1. 50 Best UFC Fighters
+ 2. 50 Worst UFC Fighters
+ 3. 50 UFC Fighters with the most wins
+ 4. 50 UFC Fighters with the most losses
+ 5. Find UFC fighter with the longest name
+ 6. Find a UFC fighter that is in the Welterweight weight class with the most losses, who is currently not fighting
+ 7. Find the title holder with the least wins"
+
+ input = gets.chomp
+     if input == "1"
+       Fighter.best_50_fighters
+     elsif input == "2"
+       Fighter.worst_50_fighters
+     elsif input == "3"
+       Fighter.most_wins
+     elsif input == "4"
+       Fighter.most_losses
+     elsif input == "5"
+       Fighter.fighter_with_the_longest_name
+     elsif input == "6"
+       Fighter.find_welterweight_with_the_most_losses_not_fighting
+     elsif input == "7"
+       Fighter.title_holder_with_the_least_wins
+
+     elsif input.downcase == "back"
+        main_menu
+     else puts "Oops! You put in an incorrect input. Try again, or quit by typing 'exit!'"
+       main_menu
+     end
+   end
 
 def search_by_name_menu
   puts "Type the Fighter's name in! Make sure to check spelling. Type 'back' if you'd like to go back to the Main Menu."
@@ -62,7 +94,7 @@ def main_menu
 
   input = gets.chomp
   if input == "1"
-    find_interesting_things
+    find_interesting_things_about_fighters
   elsif input == "2"
     search_by_name_menu
   elsif input == "3"
@@ -105,7 +137,6 @@ Good luck.
 ᕙ(° ͜ಠ ͜ʖ ͜ಠ°)ᓄ
 
 "
-binding.pry
 UserController.get_user_info
 User.add_all
 puts "Thanks! Here We Go. \n"
