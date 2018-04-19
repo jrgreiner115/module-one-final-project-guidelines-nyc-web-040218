@@ -68,4 +68,34 @@ end
       Run.get_fighter_name
    end
  end
+
+  def self.best_100_fighters
+    binding.pry
+    Fighter.order(rating: :desc).first(50).each_with_index do |record, index|
+      puts "Here's the best 50 fighters.
+      #{index += 1}. #{record.full_name_creator} rating: #{record.rating}"
+    end
+    "Choose a fighter from the list above for your fight, or enter 'back' to return to the browse menu."
+
+  end
+
+  def self.worst_100_fighters
+    binding.pry
+    i = 0
+    Fighter.order(:rating).first(50).each_index do |record, index|
+      puts "Here's the worst 50 fighters.
+      #{index += 1}. #{record.full_name_creator} rating: #{record.rating}"
+    end
+    "Choose a fighter from the list above for your fight, or enter 'back' to return to the browse menu."
+  end
+
+
+
+
+
+
+
+
+
+
 end

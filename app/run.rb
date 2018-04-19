@@ -105,8 +105,11 @@ Good luck.
 ᕙ(° ͜ಠ ͜ʖ ͜ಠ°)ᓄ
 
 "
+binding.pry
 UserController.get_user_info
+User.add_all
 puts "Thanks! Here We Go. \n"
+
 
 
 main_menu

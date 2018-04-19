@@ -34,7 +34,7 @@ class Fight < ActiveRecord::Base
 
       main_menu
     else
-      "You won! Wow, that was unexpected."
+      puts "You won! Wow, that was unexpected."
 
       user.update(wins: user.wins += 1)
 
