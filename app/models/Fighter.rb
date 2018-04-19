@@ -6,8 +6,10 @@ ActiveRecord::Base.logger = nil
 
 
  def self.pick_random_fighter
+   sleep 1.0
    random_fighter = Fighter.all.sample
    puts "Randomly, you're up against #{random_fighter.full_name_creator}. He/She has #{random_fighter.wins} wins, and #{random_fighter.losses} losses. His/Her game rating is #{random_fighter.rating}."
+   sleep 1.0
    Fight.create(fighter_id: random_fighter.id, user_id: User.last.id)
    Fight.fight_set_up
  end
@@ -62,49 +64,59 @@ end
    fighter = self.all.find {|record| record.full_name_creator.downcase == full_name.downcase}
     if fighter != nil
      Fight.create(fighter_id: fighter.id, user_id: User.last.id)
+     sleep 1.0
      puts "This is #{fighter.full_name_creator}. He/She has #{fighter.wins} wins, and #{fighter.losses} losses. His/Her game rating is #{fighter.rating}."
      Fight.fight_set_up
    else
+     sleep 1.0
       puts "Oops! We can't find that name. Make sure you spelled it correctly? Try again, or type 'back' to return to the main_menu"
       get_fighter_name
    end
  end
 
  def self.best_50_fighters
+   sleep 1.0
     puts "Here are the 50 best fighters."
       Fighter.order(rating: :desc).first(50).each_with_index do |record, index|
         puts "#{index += 1}. #{record.full_name_creator} rating: #{record.rating}"
       end
+      sleep 0.5
     puts "Choose a fighter from the list above for your fight by entering their name."
       input = gets.chomp
       Fighter.search_by_name(input)
   end
 
   def self.worst_50_fighters
+    sleep 1.0
     puts "Here are the 50 worst fighters."
       Fighter.order(:rating).first(50).each_with_index do |record, index|
         puts "#{index += 1}. #{record.full_name_creator} rating: #{record.rating}"
       end
+      sleep 0.5
     puts "Choose a fighter from the list above for your fight by entering their name."
       input = gets.chomp
       Fighter.search_by_name(input)
 end
 
   def self.most_wins
+    sleep 1.0
     puts "Here are the 50 fighters with the most wins."
       Fighter.order(wins: :desc).first(50).each_with_index do |record, index|
         puts "#{index += 1}. #{record.full_name_creator} wins: #{record.wins}"
       end
+      sleep 0.5
     puts "Choose a fighter from the list above for your fight by entering their name."
       input = gets.chomp
       Fighter.search_by_name(input)
   end
 
   def self.most_losses
+    sleep 1.0
     puts "Here are the 50 fighters with the most losses."
       Fighter.order(losses: :desc).first(50).each_with_index do |record, index|
         puts "#{index += 1}. #{record.full_name_creator} losses: #{record.losses}"
       end
+      sleep 0.5
     puts "Choose a fighter from the list above for your fight by entering their name."
       input = gets.chomp
       Fighter.search_by_name(input)
@@ -113,6 +125,7 @@ end
   def self.title_holder_with_the_least_wins
     fighter = Fighter.where(title_holder: true).order(:wins).first
     Fight.create(fighter_id: fighter.id, user_id: User.last.id)
+    sleep 1.0
     puts "You've discovered #{fighter.full_name_creator}. He/She has #{fighter.wins} wins, and #{fighter.losses} losses, and is a titleholder. His/Her game rating is #{fighter.rating}."
     Fight.fight_set_up
   end
@@ -125,20 +138,22 @@ end
      a = a.length
      if a > counter
        counter = a
-       fighter = "#{record.first_name} #{record.last_name}"
+       fighter = record
      end
      }
-   fighter
+   puts "You've discovered #{fighter.full_name_creator}. #{fighter.first_name} is a #{fighter.weight_class}. He/She has #{fighter.wins} wins, and #{fighter.losses} losses. His/Her game rating is #{fighter.rating}."
+   Fight.fight_set_up
   end
 
   def self.find_welterweight_with_the_most_losses_not_fighting
     fighter = Fighter.where(weight_class: "Welterweight", fighter_status: "NotFighting").order(losses: :desc).first
     Fight.create(fighter_id: fighter.id, user_id: User.last.id)
+    sleep 1.0
     puts "You've discovered #{fighter.full_name_creator}. #{fighter.first_name} is a #{fighter.weight_class}. He/She has #{fighter.wins} wins, and #{fighter.losses} losses. His/Her game rating is #{fighter.rating}."
     Fight.fight_set_up
   end
 
-  def rating_update
+  def fighter_rating_update
   self.rating = 0
 
     self.rating += (self.wins / (self.losses + 1))

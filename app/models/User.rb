@@ -2,8 +2,6 @@ class User < ActiveRecord::Base
  has_many :fights
 
 
-
-
  def self.add_all
 
     User.all.map {|record|
@@ -60,6 +58,30 @@ class User < ActiveRecord::Base
     }
  end
 
+def self.find_me
+  id = User.last.id
+
+  current_user = User.find(id)
+  puts "You are #{current_user.name}. Your weight is #{current_user.weight}. You have #{current_user.wins - 1} wins and #{current_user.losses - 1} losses. Your rating is #{current_user.rating}."
+  sleep 1.0
+  puts "Options:
+  To change any of your attributes or delete your profile, type 'preferences'. To go back to the menu, type 'back'."
+
+  input = gets.chomp
+
+  if input.downcase == "preferences"
+    preferences
+  elsif input.downcase == "back"
+    main_menu
+  else
+    puts "Whoops, didn't quite get that. We'll take you back to the Menu."
+    main_menu
+  end
+end
+
+
+
+
  def user_rating_update
 
    self.rating = 0
@@ -113,7 +135,6 @@ class User < ActiveRecord::Base
       self.save
 
  end
-
 
 
 

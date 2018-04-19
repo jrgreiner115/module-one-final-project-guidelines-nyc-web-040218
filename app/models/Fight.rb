@@ -31,18 +31,19 @@ class Fight < ActiveRecord::Base
       opponent.update(wins: opponent.wins += 1)
       user.update(losses: user.losses += 1)
 
-      Fighter.all_add
-      User.add_all
+      opponent.fighter_rating_update
+      user.user_rating_update
 
       main_menu
     else
       puts "You won! Wow, that was unexpected."
 
+
+
       user.update(wins: user.wins += 1)
       opponent.update(losses: opponent.losses += 1)
-      Fighter.all_add
-      opponent.rating
-      User.add_all
+      opponent.fighter_rating_update
+      user.user_rating_update
 
       main_menu
     end

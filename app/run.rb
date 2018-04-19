@@ -15,11 +15,13 @@ end
 
 
 def find_interesting_things_about_fighters
- puts "Let's browse the UFC roster for some interesting stuff. 
+  sleep 1.0
+ puts "Let's browse the UFC roster for some interesting stuff."
+    sleep 0.5
+  puts "Enter a number for an option. Or, 'back' to return to the Main Menu."
+    sleep 1.0
 
-   Enter a number for an option. Or, 'back' to return to the Main Menu.
-
- 1. 50 Best UFC Fighters
+ puts "1. 50 Best UFC Fighters
  2. 50 Worst UFC Fighters
  3. 50 UFC Fighters with the most wins
  4. 50 UFC Fighters with the most losses
@@ -82,7 +84,8 @@ end
 
 
 def main_menu
-  puts "Main Menu:
+  sleep 1.0
+  puts "\n Main Menu:
 
 
   Enter a number for an option. Or, type 'quit' to quit Fight Night.
@@ -90,7 +93,8 @@ def main_menu
   1. Find Interesting Things About Fighters
   2. Search For Fighter By Name
   3. Fight Random Fighter
-  4. Preferences"
+  4. My Profile
+  5. Preferences"
 
   input = gets.chomp
   if input == "1"
@@ -100,6 +104,8 @@ def main_menu
   elsif input == "3"
     Fighter.pick_random_fighter
   elsif input == "4"
+    User.find_me
+  elsif input == "5"
       preferences
   elsif input.downcase == "quit"
      exit
@@ -114,17 +120,28 @@ end
 
 puts <<-EOF
 
-.d888d8b        888     888
-d88P" Y8P        888     888
-888              888     888
-888888888 .d88b. 88888b. 888888
-888   888d88P"88b888 "88b888
-888   888888  888888  888888
-888   888Y88b 888888  888Y88b.
-888   888 "Y88888888  888 "Y888
-             888
-        Y8b d88P
-         "Y88P"
+
+88888888888 88             88
+88          ""             88           ,d
+88                         88           88
+88aaaaa     88  ,adPPYb,d8 88,dPPYba, MM88MMM
+88"""""     88 a8"    `Y88 88P'    "8a  88
+88          88 8b       88 88       88  88
+88          88 "8a,   ,d88 88       88  88,
+88          88  `"YbbdP"Y8 88       88  "Y888
+                aa,    ,88
+                "Y8bbdP"
+
+888b      88 88             88
+8888b     88 ""             88           ,d
+88 `8b    88                88           88
+88  `8b   88 88  ,adPPYb,d8 88,dPPYba, MM88MMM
+88   `8b  88 88 a8"    `Y88 88P'    "8a  88
+88    `8b 88 88 8b       88 88       88  88
+88     `8888 88 "8a,   ,d88 88       88  88,
+88      `888 88  `"YbbdP"Y8 88       88  "Y888
+                 aa,    ,88
+                  "Y8bbdP"
 \n
 EOF
 
