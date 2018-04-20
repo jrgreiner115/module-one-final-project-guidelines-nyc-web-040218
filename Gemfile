@@ -8,3 +8,4 @@ gem "require_all"
 gem "rest-client"
 gem "json"
 gem "byebug", '8.2.2'
+gem "colorize"

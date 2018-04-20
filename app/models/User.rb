@@ -62,10 +62,10 @@ def self.find_me
   id = User.last.id
 
   current_user = User.find(id)
-  puts "You are #{current_user.name}. Your weight is #{current_user.weight}. You have #{current_user.wins - 1} wins and #{current_user.losses - 1} losses. Your rating is #{current_user.rating}."
+  puts "You are #{current_user.name}. Your weight is #{current_user.weight}. You have #{current_user.wins - 1} wins and #{current_user.losses - 1} losses. Your rating is #{current_user.rating}.".colorize(:white)
   sleep 1.0
   puts "Options:
-  To change any of your attributes or delete your profile, type 'preferences'. To go back to the menu, type 'back'."
+  To change any of your attributes or delete your profile, type 'preferences'. To go back to the menu, type 'back'.".colorize(:white)
 
   input = gets.chomp
 
@@ -74,7 +74,7 @@ def self.find_me
   elsif input.downcase == "back"
     main_menu
   else
-    puts "Whoops, didn't quite get that. We'll take you back to the Menu."
+    puts "Whoops, didn't quite get that. We'll take you back to the Menu.".colorize(:red)
     main_menu
   end
 end

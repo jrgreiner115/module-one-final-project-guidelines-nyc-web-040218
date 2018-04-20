@@ -8,8 +8,8 @@ def get_fighters_from_api
     fighter_array = JSON.parse(all_fighters)
 end
 
-def seed_it
-  get_fighters_from_api.each do |hash|
+def seed_it(hash)
+  get_fighters_from_api.each do
     Fighter.create(hash)
   end
 end
